@@ -4,11 +4,13 @@ const resultDisplay = document.getElementById('result')
 const possibleChoices = document.querySelectorAll('button')
 let userChoice
 let computerChoice
+let result
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
   userChoice = e.target.id
   userChoiceDisplay.innerHTML = userChoice
   gerateCompterChoice()
+  getResult()
 }))
 
 function gerateCompterChoice() {
@@ -25,4 +27,29 @@ function gerateCompterChoice() {
     computerChoice = 'paper'
   }
   computerChoiceDisplay.innerHTML = computerChoice
+}
+
+function getResult() {
+  if (computerChoice === userChoice) {
+    result = 'You tied!'
+  }
+  if (computerChoice === 'rock' && userChoice === 'paper') {
+    result = 'You Win!'
+  }
+  if (computerChoice === 'rock' && userChoice === 'scissors') {
+    result = 'You Lose!'
+  }
+  if (computerChoice === 'paper' && userChoice === 'scissors') {
+    result = 'You Win!'
+  }
+  if (computerChoice === 'paper' && userChoice === 'rock') {
+    result = 'You Win!'
+  }
+  if (computerChoice === 'scissors' && userChoice === 'rock') {
+    result = 'You Win!'
+  }
+  if (computerChoice === 'scissors' && userChoice === 'paper') {
+    result = 'You Lose!'
+  }
+  resultDisplay.innerHTML = result
 }
